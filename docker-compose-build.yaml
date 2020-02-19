@@ -22,6 +22,9 @@ networks:
 services:
   shell:
     image: sawtooth_supply_chain-supply_shell
+    build:
+        context: ./
+        dockerfile: ./shell/Dockerfile
     container_name: supply-shell
     volumes:
       - .:/sawtooth-supply-chain
@@ -59,6 +62,9 @@ services:
 
   processor:
     image: sawtooth_supply_chain-supply_tp
+    build:
+        context: ./
+        dockerfile: ./processor/Dockerfile
     container_name: supply-tp-installed
     entrypoint: supply-chain-tp -C tcp://validator:4004
     restart: unless-stopped
@@ -67,6 +73,9 @@ services:
 
   server:
     image: sawtooth_supply_chain-supply_server
+    build:
+        context: ./
+        dockerfile: ./server/Dockerfile
     container_name: supply-server-installed
     expose:
       - 3000
@@ -89,6 +98,9 @@ services:
 
   ledger-sync:
     image: sawtooth_supply_chain-ledger_sync
+    build:
+        context: ./
+        dockerfile: ./ledger_sync/Dockerfile
     container_name: supply-ledger-sync-installed
     depends_on:
       - rethink
@@ -101,6 +113,9 @@ services:
 
   asset-client:
     image: sawtooth_supply_chain-supply_asset_client
+    build:
+        context: ./
+        dockerfile: ./asset_client/Dockerfile
     container_name: supply-asset-client-installed
     expose:
       - 3500
