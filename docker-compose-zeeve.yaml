@@ -15,10 +15,6 @@
 
 version: '2.1'
 
-networks:
-  zeeve_zeeveops_zeeve-net:
-    external: true
-
 services:
   shell:
     image: sawtooth_supply_chain-supply_shell
@@ -54,16 +50,14 @@ services:
         tail -f /dev/null
       "
     restart: unless-stopped
-    networks:
-      - zeeve_zeeveops_zeeve-net
+    network_mode: host
 
   processor:
     image: sawtooth_supply_chain-supply_tp
     container_name: supply-tp-installed
     entrypoint: supply-chain-tp -C tcp://validator:4004
     restart: unless-stopped
-    networks:
-      - zeeve_zeeveops_zeeve-net
+    network_mode: host
 
   server:
     image: sawtooth_supply_chain-supply_server
@@ -84,8 +78,7 @@ services:
         node index.js
       "
     restart: unless-stopped
-    networks:
-      - zeeve_zeeveops_zeeve-net
+    network_mode: host
 
   ledger-sync:
     image: sawtooth_supply_chain-ledger_sync
@@ -96,8 +89,7 @@ services:
       - VALIDATOR_URL=tcp://validator:4004
       - DB_HOST=rethink
     restart: unless-stopped
-    networks:
-      - zeeve_zeeveops_zeeve-net
+    network_mode: host
 
   asset-client:
     image: sawtooth_supply_chain-supply_asset_client
@@ -109,8 +101,7 @@ services:
     depends_on:
       - server
     restart: unless-stopped
-    networks:
-      - zeeve_zeeveops_zeeve-net
+    network_mode: host
 
   rethink:
     image: rethinkdb
@@ -123,5 +114,4 @@ services:
       - 'https_proxy=${https_proxy}'
       - 'no_proxy=rest-api,server,eth0,validator,${no_proxy}'
     restart: unless-stopped
-    networks:
-      - zeeve_zeeveops_zeeve-net
+    network_mode: host
