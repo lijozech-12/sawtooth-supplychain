@@ -52,6 +52,7 @@ RUN echo "deb http://repo.sawtooth.me/ubuntu/1.0/stable xenial universe" >> /etc
   && npm install -g prebuild-install
 
 WORKDIR /sawtooth-supply-chain
+COPY . .
 
 # Install NPM dependencies to central location, link to individual components
 COPY bin/splice_json bin/

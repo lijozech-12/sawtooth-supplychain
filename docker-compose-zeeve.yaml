@@ -20,7 +20,7 @@ services:
     image: sawtooth_supply_chain-supply_shell
     container_name: supply-shell
     volumes:
-      - .:/sawtooth-supply-chain
+      - .:/sawtooth-supply-chain-volume
       - /sawtooth-supply-chain/asset_client/node_modules
       - /sawtooth-supply-chain/fish_client/node_modules
       - /sawtooth-supply-chain/server/node_modules
@@ -47,6 +47,7 @@ services:
           npm run seed-sample-fish &&
           cd -
         fi;
+        mkdir /sawtooth-supply-chain-volume && cp -r /sawtooth_supply_chain /sawtooth-supply-chain-volume &&
         tail -f /dev/null
       "
     restart: unless-stopped
