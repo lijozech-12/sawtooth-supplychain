@@ -66,7 +66,7 @@ services:
         context: ./
         dockerfile: ./processor/Dockerfile
     container_name: supply-tp-installed
-    entrypoint: supply-chain-tp -C tcp://validator:4004
+    entrypoint: supply-chain-tp -C tcp://localhost:4004
     restart: unless-stopped
     networks:
       - zeeve_zeeveops_zeeve-net

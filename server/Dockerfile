@@ -54,9 +54,10 @@ RUN \
   npm config set https-proxy $https_proxy; \
  fi
 
-COPY server/package.json .
+COPY server/ .
+COPY protos ../protos
 RUN npm install
 
 EXPOSE 3000/tcp
 
-CMD ["/usr/bin/node" "index.js"]
+CMD ["/usr/bin/node" "/sawtooth-supply-chain/server/index.js"]

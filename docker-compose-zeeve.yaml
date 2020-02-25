@@ -27,9 +27,9 @@ services:
     depends_on:
       - rethink
     environment:
-      - VALIDATOR_URL=tcp://validator:4004
-      - DB_HOST=rethink
-      - SERVER=http://server:3000
+      - VALIDATOR_URL=tcp://localhost:4004
+      - DB_HOST=localhost
+      - SERVER=http://localhost:3000
       - 'http_proxy=${http_proxy}'
       - 'https_proxy=${https_proxy}'
       - 'no_proxy=rest-api,server,eth0,validator,${no_proxy}'
@@ -55,7 +55,7 @@ services:
   processor:
     image: sawtooth_supply_chain-supply_tp
     container_name: supply-tp-installed
-    entrypoint: supply-chain-tp -C tcp://validator:4004
+    entrypoint: supply-chain-tp -C tcp://localhost:4004
     restart: unless-stopped
     network_mode: host
 
@@ -65,12 +65,12 @@ services:
     expose:
       - 3000
     ports:
-      - '8020:3000'
+      - '3000:3000'
     depends_on:
       - rethink
     environment:
-      - VALIDATOR_URL=tcp://validator:4004
-      - DB_HOST=rethink
+      - VALIDATOR_URL=tcp://localhost:4004
+      - DB_HOST=localhost
     command: |
       bash -c "
         set -x &&
@@ -86,18 +86,20 @@ services:
     depends_on:
       - rethink
     environment:
-      - VALIDATOR_URL=tcp://validator:4004
-      - DB_HOST=rethink
+      - VALIDATOR_URL=tcp://localhost:4004
+      - DB_HOST=localhost
     restart: unless-stopped
     network_mode: host
 
   asset-client:
     image: sawtooth_supply_chain-supply_asset_client
     container_name: supply-asset-client-installed
+    volumes:
+      - ./asset_client/public/:/usr/local/apache2/htdocs/
     expose:
-      - 3500
+      - 80
     ports:
-      - '3500:3500'
+      - '8021:80'
     depends_on:
       - server
     restart: unless-stopped

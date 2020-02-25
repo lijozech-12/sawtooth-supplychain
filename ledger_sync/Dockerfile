@@ -55,7 +55,8 @@ RUN \
  fi
 
 
-COPY ledger_sync/package.json .
+COPY ledger_sync/ .
+COPY protos ../protos
 RUN npm install
 
-CMD ["/usr/bin/node", "index.js"]
+CMD ["/usr/bin/node", "/sawtooth-supply-chain/ledger_sync/index.js"]
