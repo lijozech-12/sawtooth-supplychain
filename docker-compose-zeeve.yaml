@@ -47,7 +47,10 @@ services:
           npm run seed-sample-fish &&
           cd -
         fi;
-        mkdir /sawtooth-supply-chain-volume && cp -r /sawtooth_supply_chain /sawtooth-supply-chain-volume &&
+        if [ ! -d /sawtooth-supply-chain-volume ]; then
+          mkdir /sawtooth-supply-chain-volume
+        fi;
+        && cp -r /sawtooth_supply_chain /sawtooth-supply-chain-volume &&
         tail -f /dev/null
       "
     restart: unless-stopped
