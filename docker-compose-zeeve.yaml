@@ -35,22 +35,19 @@ services:
       - 'no_proxy=rest-api,server,eth0,validator,${no_proxy}'
     command: |
       bash -c "
-        cd asset_client/ && npm run build && cd - &&
+        cd asset_client/ && npm run build && cd - && cp -r /sawtooth-supply-chain/asset_client/public/* /sawtooth-supply-chain-volume/asset_client/public/ &&
         cd fish_client/ && npm run build && cd - &&
         if [ ! -f /root/.sawtooth/keys/root.priv ]; then
           sawtooth keygen &&
           cd server/ &&
           npm run init &&
           npm run make-asset &&
-          npm run make-fish &&
           npm run seed-sample-assets &&
-          npm run seed-sample-fish &&
           cd -
         fi;
         if [ ! -d /sawtooth-supply-chain-volume ]; then
           mkdir /sawtooth-supply-chain-volume
         fi;
-        && cp -r /sawtooth_supply_chain /sawtooth-supply-chain-volume &&
         tail -f /dev/null
       "
     restart: unless-stopped
@@ -72,6 +69,7 @@ services:
       - '3000:3000'
     depends_on:
       - rethink
+      - shell
     environment:
       - VALIDATOR_URL=tcp://localhost:4004
       - DB_HOST=localhost
