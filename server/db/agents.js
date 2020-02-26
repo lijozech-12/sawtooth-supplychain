@@ -68,7 +68,6 @@ const isReporter = agent => property => {
 const getTable = (tableName, block) =>
       r.table(tableName).filter(hasCurrentBlock(block))
 
-      
 const listQuery = filterQuery => block => {
   return getTable('agents', block)
     .filter(filterQuery)
