@@ -127,8 +127,8 @@ properties:
 
 These properties can be set one of two ways, through an environment variable,
 or (preferably) by creating a file named `config.json` file in the `server/`
-directory. A file named `config.json.example` is provided which should provide
-a template to follow.
+directory. A file named `config.json.example` is provided which should provide a
+template to follow.
 
 ## Development
 
