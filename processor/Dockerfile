@@ -54,6 +54,9 @@ WORKDIR /sawtooth-supply-chain
 RUN USER=root cargo new --bin processor
 
 WORKDIR /sawtooth-supply-chain/processor
+COPY processor/ /sawtooth-supply-chain/processor
+RUN mkdir /sawtooth-supply-chain/protos
+COPY protos /sawtooth-supply-chain/protos
 COPY processor/Cargo.toml Cargo.lock* ./
 RUN cargo build
 

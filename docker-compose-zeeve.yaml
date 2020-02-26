@@ -56,9 +56,14 @@ services:
   processor:
     image: sawtooth_supply_chain-supply_tp
     container_name: supply-tp-installed
-    entrypoint: supply-chain-tp -C tcp://localhost:4004
+    # entrypoint: supply-chain-tp -C tcp://localhost:4004
     restart: unless-stopped
     network_mode: host
+    entrypoint: |
+      bash -c "
+        cargo build &&
+        supply-chain-tp -v -C tcp://localhost:4004
+      "
 
   server:
     image: sawtooth_supply_chain-supply_server
