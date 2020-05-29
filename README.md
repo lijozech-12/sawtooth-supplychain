@@ -28,7 +28,7 @@ please see its
 
 Running alongside the core components from Hyperledger Sawtooth, Supply Chain
 includes a number of elements customizing the blockchain and user interaction
-with it:-
+with it:
 
 - a **transaction processor** which handles Supply Chain transaction logic
 - a **server** which provides an HTTP/JSON API for Supply Chain actions
