@@ -85,8 +85,8 @@ shell, simply open a terminal window and run:
 docker exec -it supply-shell bash
 ```
 
-Once inside the shell, you might try running the one of the update scripts to
-see live updates populate in an example web app. First navigate to the server
+Once inside the shell, you might try running one of the update scripts to
+see live updates populate in an example web app. First, navigate to the server
 directory:
 
 ```bash
