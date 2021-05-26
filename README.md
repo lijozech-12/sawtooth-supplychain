@@ -117,7 +117,7 @@ exit
 ### Configuring API Keys and Secrets
 
 While the Server runs out of the box with sensible defaults, there are a number
-of secrets and API keys which will not be secure unless set explicitly. While
+of secrets and API keys that will not be secure unless set explicitly. While
 this is fine for demo purposes, any actual deployment set the following
 properties:
 
