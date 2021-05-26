@@ -43,7 +43,7 @@ with it:
 This project utilizes [Docker](https://www.docker.com/what-docker) to simplify
 dependencies and deployment. After cloning this repo, follow the instructions
 specific to your OS to install and run whatever components are required to use
-`docker` and `docker-compose` from your command line. This is only dependency
+`docker` and `docker-compose` from your command line. This is the only dependency
 required to run Supply Chain components.
 
 ### Start Up
