@@ -135,11 +135,11 @@ template to follow.
 ### Restarting Components
 
 The default Docker containers use the `volumes` command to link directly to the
-source code on your host machine. As a result any changes you make will
+source code on your host machine. As a result, any changes you make will
 immediately be reflected in Supply Chain components without having to rebuild
 them. However, typically you _will_ have to restart a component before it can
 take advantage of any changes. Rather than restarting every container, you can
-restart a single component from separate terminal using the container name. For
+restart a single component from a separate terminal using the container name. For
 example:
 
 ```bash
